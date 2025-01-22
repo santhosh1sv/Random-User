@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">RandomUser</string>
+    <string name="enter_the_number">Enter the number</string>
+    <string name="fetch">Fetch</string>
+    <string name="uh_oh_something_has_gone_wrong">Uh oh, something has gone wrong.</string>
+    <string name="no_data_found">No data found</string>
+    <string name="first_name">First Name: %1$s</string>
+    <string name="last_name">Last Name: %1$s</string>
+    <string name="address">Address: %1$s</string>
+    <string name="gender">"Gender: %1$s"</string>
+    <string name="email">"Email: %1$s"</string>
+    <string name="age">"Age: %1$d"</string>
+    <string name="phone">"Phone: %1$s"</string>
+    <string name="please_enter_a_number">Please enter a number</string>
+</resources>
