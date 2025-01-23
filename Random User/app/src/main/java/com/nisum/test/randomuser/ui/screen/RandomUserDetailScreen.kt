@@ -1,4 +1,4 @@
-package com.nisum.test.randomuser.ui
+package com.nisum.test.randomuser.ui.screen
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Column
