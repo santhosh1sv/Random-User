@@ -17,6 +17,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -38,9 +39,10 @@ fun RandomUsersScreen(
     randomUsersApiViewModel: RandomUsersApiViewModel = hiltViewModel(),
     navController: NavController
 ) {
-    var number by remember { mutableStateOf("") }
+    var number by rememberSaveable { mutableStateOf("") }
     val keyboard = LocalSoftwareKeyboardController.current
     val context = LocalContext.current
+    val pattern = remember { Regex("^\\d+\$") }
     Surface(
         modifier = modifier
             .fillMaxSize()
@@ -60,7 +62,7 @@ fun RandomUsersScreen(
                 )
                 Spacer(modifier.width(10.dp))
                 Button(onClick = {
-                    if (number != "" && number.toInt() != 0) {
+                    if (number != "" && number.matches(pattern) && number.toInt() != 0) {
                         randomUsersApiViewModel.clearPaging()
                         randomUsersApiViewModel.getRandomUsers(
                             number.toInt()
