@@ -47,9 +47,8 @@ class RandomUsersApiViewModel @Inject constructor(
                     if (page == INITIAL_PAGE) {
                         if (results!!.isEmpty()) {
                             _pagingStateFlow.value = PaginationState.EMPTY
-                            return@apply
+                            return@launch
                         }
-                        _randomUsersListStateFlow.value.clear()
                         _randomUsersListStateFlow.value.addAll(results.map { randomUser ->
                             RandomUserModel(
                                 randomUser.name.first,
@@ -101,10 +100,12 @@ class RandomUsersApiViewModel @Inject constructor(
 
 
     fun clearPaging() {
+        _randomUsersListStateFlow.value.clear()
         page = INITIAL_PAGE
         thereAreRemainingResults = false
-        _pagingStateFlow.value = PaginationState.LOADING
         _canPaginateStateFlow.value = false
+        _pagingStateFlow.value = PaginationState.REQUEST_INACTIVE
+
     }
 
     companion object {

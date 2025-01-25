@@ -54,7 +54,7 @@ fun RandomUsersScreen(
             Row(verticalAlignment = Alignment.CenterVertically) {
                 TextField(
                     value = number,
-                    onValueChange = { number = it },
+                    onValueChange = { number = it.trim() },
                     placeholder = { Text(text = stringResource(R.string.enter_the_number)) },
                     singleLine = true,
                     modifier = modifier.weight(1f),
@@ -62,19 +62,20 @@ fun RandomUsersScreen(
                 )
                 Spacer(modifier.width(10.dp))
                 Button(onClick = {
-                    if (number != "" && number.matches(pattern) && number.toInt() != 0) {
-                        randomUsersApiViewModel.clearPaging()
+                    randomUsersApiViewModel.clearPaging()
+                    if (number.matches(pattern) && number.toInt() != 0) {
                         randomUsersApiViewModel.getRandomUsers(
                             number.toInt()
                         )
-                        keyboard?.hide()
                     } else {
+                        number = " "
                         Toast.makeText(
                             context,
                             context.getText(R.string.please_enter_a_number),
                             Toast.LENGTH_LONG
                         ).show()
                     }
+                    keyboard?.hide()
                 }) {
                     Text(stringResource(R.string.fetch))
                 }
